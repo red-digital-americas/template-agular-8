@@ -1,0 +1,159 @@
+table {
+  width: 100%;
+}
+
+.profile {
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 2px 2px 10px #666;
+  margin-left: 50px;
+  margin-right: 30px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+tr:nth-child(even) {
+  background-color: #F0F0F0;
+}
+
+.titlePurple {
+  color: #902487;
+  font-size: 24px !important;
+}
+
+.infoText {
+  color: #7B7B7B;
+  font-size: 16px !important;
+}
+
+.Bold {
+  font-family: "DraftB" !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.saveButton {
+  background-color: #8a0d80;
+  border-radius: 28px;
+  border: 0px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 36px;
+  padding-right: 36px;
+  text-decoration: none;
+}
+
+.editButton {
+  background-color: #8a0d80;
+  border-radius: 28px;
+  border: 0px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 13px;
+  padding-right: 13px;
+  text-decoration: none;
+}
+
+.addButton {
+  background-color: #8a0d80;
+  border-radius: 26px;
+  border: 0px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 19px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  margin-top: 24px;
+}
+
+.Uploaded {
+  background-color: #A3A2A2;
+  border-radius: 28px;
+  border: 0px;
+  display: inline-block;
+  color: #ffffff;
+  margin-top: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Approved {
+  background-color: #4FDA1E;
+  border-radius: 28px;
+  border: 0px;
+  display: inline-block;
+  color: #ffffff;
+  margin-top: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Expired {
+  background-color: #E31212;
+  border-radius: 28px;
+  border: 0px;
+  display: inline-block;
+  color: #ffffff;
+  margin-top: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.Uploaded, .Approved, .Expired {
+  font-size: 12px !important;
+}
+
+.marginT60 {
+  margin-top: 60px;
+}
+
+.marginT20 {
+  border: 0px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.hrGrayBold {
+  height: 2px;
+  background-color: #E5E4E4;
+  border: none;
+  margin-top: 0px;
+}
+
+.hrGrayLight {
+  height: 1px;
+  background-color: #E5E4E4;
+  border: none;
+}
+
+.hrPurple {
+  height: 2px;
+  background-color: #C389BE;
+  border: none;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+body, textarea, input, .full-width,
+.example-chip-list, span,
+.table-responsive, table {
+  font-family: "DraftB" !important;
+}

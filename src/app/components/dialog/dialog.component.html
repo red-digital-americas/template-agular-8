@@ -1,0 +1,48 @@
+<div class="row">
+  <!-- header -->
+  <div class="col-xs-12 col-lg-6 text-left">
+    <h1 mat-dialog-title class="text-color">{{data.titulo}}</h1>
+  </div>
+  <div class="col-xs-12 col-lg-6 text-right">
+    <h1 mat-dialog-title class="text-color" style="cursor:pointer"><i class="fa fa-times" aria-hidden="true"
+        (click)="onNoClick()"></i></h1>
+  </div>
+  <div class="col-xs-12 margin-bottom">
+    <mat-divider style="border-top-color: #720F6A !important;"></mat-divider>
+  </div>
+  <!-- ./header -->
+
+  <!-- content dialog -->
+  <div class="col-xs-12 margin-bottom" *ngIf="data.tipo == 1">
+    <form>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Favorite food" value="Sushi">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <!-- ./content dialog -->
+
+  <!-- buttons -->
+  <div class="col-xs-12 text-right" *ngIf="data.tipo == 1">
+    <button mat-raised-button class="dinButton">Primary</button>
+  </div>
+
+  <!-- Add emergency contact -->
+  <div class="col-xs-12 text-right" *ngIf="data.tipo == 'emergencyContact'">
+    <button mat-raised-button class="dinButton" (click)="addEmergencyContact()">Save</button>
+  </div>
+  <!-- ./Add emergency contact -->
+
+  <!-- Add document -->
+  <div class="col-xs-12 text-right" *ngIf="data.tipo == 'document'">
+    <button mat-raised-button class="dinButton" (click)="addDocument()">Save</button>
+  </div>
+  <!-- ./Add document -->
+
+  <!-- ./buttons -->
+</div>

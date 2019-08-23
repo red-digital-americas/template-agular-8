@@ -1,0 +1,72 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+<div class="back-image">
+  <div class="container">
+    <div class="row">
+      <div class="Absolute-Center is-Responsive">
+        <div class="login-box-body">
+          <div class="form-group has-feedback" style="padding:20px;">
+            <form #form_login="ngForm" *ngIf="isLogin">
+              <div class="col-xs-12" style="margin-bottom:40px">
+                <img width="200" height="200" class="img-responsive text-center" style="margin: 0 auto;" src="assets/img/logo.png">
+              </div>
+              <mat-form-field class="full-width" style="margin-bottom:40px">
+                <input type="text" style="font-size:18px" matInput id="Email" name="Email" [(ngModel)]="user.Email" #Email="ngModel" placeholder="USER" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$">
+                <mat-error *ngIf="Email.dirty || Email.pristine || Email.errors.pattern">
+                  Email is not valid <strong>(eg example@do.com)</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="full-width">
+                <input type="password" style="font-size:18px" matInput id="Password" name="Password" [(ngModel)]="user.Password" #Password="ngModel" placeholder="PASSWORD" required>
+                <mat-error *ngIf="Password.dirty || Password.pristine">
+                  Password <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <div class="text-center" style="margin-bottom:50px"><a style="color:#741368; font-size:16px; cursor:pointer" (click)="change_password();">Forgot your password?</a></div>
+              <div class="row">
+                <div class="col-lg-8">
+                </div>
+                <!-- /.col -->
+
+                <div class="col-xs-12 col-lg-4" style="padding-bottom:0; padding:0;">
+                  <button (click)="form_login.valid ? login() : ''" id="btn_login" class="btn btn-primary btn-block btn-flat">LOG IN</button>
+                </div>
+                <!-- /.col -->
+              </div>
+            </form>
+
+            <form #form_change="ngForm" *ngIf="!isLogin">
+              <div class="col-xs-12 text-right" style="padding:0;">
+                <i class="fa fa-times-circle-o" style="color:#861C72; font-size:x-large; cursor:pointer; top: -28px; right: -28px; position:absolute" (click)="cancel();" aria-hidden="true"></i>
+              </div>
+              <div class="col-xs-12" style="margin-bottom:40px">
+                <img width="200" height="200" class="img-responsive text-center" style="margin: 0 auto;" src="assets/img/logo.png">
+              </div>
+              <mat-form-field class="full-width" style="margin-bottom:40px">
+                <input type="text" style="font-size:18px" matInput id="Email_new" name="Email_new" [(ngModel)]="txt_Email_new" #Email_new="ngModel" placeholder="EMAIL" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$">
+                <mat-error *ngIf="Email_new.dirty || Email_new.pristine || Email_new.errors.pattern">
+                  Email is not valid <strong>(eg example@do.com)</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <div class="row">
+                <div class="col-xs-12 text-right" style="padding-bottom:0; padding:0;">
+                  <div class="col-xs-12 col-lg-2">
+
+                  </div>
+                  <div class="col-xs-12 col-lg-5">
+                    
+                  </div>
+                  <div class="col-xs-12 col-lg-5">
+                    <button (click)="form_change.valid ? change_pass() : ''" id="btn_login" class="btn btn-primary btn-block btn-flat">SUBMIT</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

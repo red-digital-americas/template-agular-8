@@ -1,0 +1,359 @@
+<div class="content profile">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <h3 class="text-left titlePurple">My Profile</h3>
+    </div>
+
+    <div class="col-md-6">
+      <button class="pull-right editButton" (click)="changeMode()" *ngIf="!edit">
+        <i class="fa fa-pencil" aria-hidden="true" style="cursor: pointer; color:white;">
+        </i>
+      </button>
+      <button class="pull-right saveButton" (click)="changeMode('save')" *ngIf="edit">
+        Save
+      </button>
+    </div>
+  </div>
+
+  <hr class="hrGrayBold"> <!-- Horizontal line -->
+
+  <!-- My Profile -->
+  <div class="row" style="padding-bottom: 10px">
+
+    <div class="col-md-4">
+      <img class="img-responsive img-circle" src="assets/img/user1-128x128.jpg" width="220" height="220">
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold">Name:</h3>
+      <span class="infoText">{{firstName}}</span>
+
+      <h3 class="text-left Bold marginT60">City, State of Birth:</h3>
+      <span class="infoText">{{cityBirth}}, {{stateBirth}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold">Last Name:</h3>
+      <span class="infoText">{{lastName}}</span>
+
+      <h3 class="text-left Bold marginT60">Country:</h3>
+      <span class="infoText">{{countryBirth}}</span>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="text-left Bold">Job Title:</h3>
+      <span class="infoText">{{jobTitle}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold">Office:</h3>
+      <span class="infoText">{{office}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold">Active Since:</h3>
+      <span class="infoText">{{activeSince}}</span>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <h3 class="text-left Bold marginT20">About Me:</h3>
+
+      <mat-form-field class="full-width" *ngIf="edit">
+        <textarea matInput [(ngModel)]="aboutMe" rows="5" style="resize: none;"></textarea>
+      </mat-form-field>
+
+      <div class="infoText" *ngIf="!edit" style="padding-bottom: 15px;">{{aboutMe}}</div>
+
+    </div>
+
+  </div>
+
+  <hr class="hrGrayBold" style="margin-bottom: 0px;"> <!-- Horizontal line -->
+
+  <!-- Direction -->
+  <div class="row">
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold marginT20">Current Address:</h3>
+      <mat-form-field class="full-width" *ngIf="edit" style="padding-bottom: 0px; margin-bottom: 0px;">
+        <input matInput [(ngModel)]="currentAddress">
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{currentAddress}}</span>
+
+      <h3 class="text-left Bold marginT20">Country:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <mat-select [(value)]="countrySelected" (selectionChange)="countryChange()">
+          <mat-option *ngFor="let country of countriesCatalog" [value]="country.id">
+            {{country.country}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{countryAddress}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold marginT20">City:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <mat-select [(value)]="stateSelected">
+          <mat-option *ngFor="let state of statesCatalog" [value]="state.id">
+            {{state.state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{stateAddress}}</span>
+
+      <h3 class="text-left Bold marginT20">Zip Code:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <input matInput [(ngModel)]="zipCode">
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{zipCode}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold marginT20">State:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <mat-select [(value)]="citySelected" (selectionChange)="cityChange()">
+          <mat-option *ngFor="let city of citiesCatalog" [value]="city.id">
+            {{city.city}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{cityAddress}}</span>
+    </div>
+
+  </div>
+
+  <hr style="margin-bottom: 0px;"> <!-- Horizontal line -->
+
+  <!-- Contact -->
+  <div class="row">
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold marginT20">Contact Phone Number:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <input matInput [(ngModel)]="phoneNumber">
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{phoneNumber}}</span>
+
+      <h3 class="text-left Bold marginT20">Spoken Languages:</h3>
+      <!--- Material Chips Angular -->
+      <mat-form-field class="example-chip-list" *ngIf="edit">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let language of languagesSelected;let indx=index;" [selectable]="selectable"
+            [removable]="removable" (removed)="remove(language,indx)">
+            {{language.language}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input #languageInput [formControl]="languageCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let language of filteredLanguages | async" [value]="language">
+            {{language.language}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <!-- <pre>{{languagesSelected|json}}</pre> -->
+
+      <span class="infoText" *ngIf="!edit">{{spokenLanguage}}</span>
+    </div>
+
+    <div class="col-md-4">
+        <h3 class="text-left Bold marginT20">Premier Email:</h3>
+        <mat-form-field class="full-width" *ngIf="edit">
+          <input matInput [(ngModel)]="premierEmail" name="premierEmail">
+        </mat-form-field>
+
+        <span class="infoText" *ngIf="!edit">{{premierEmail}}</span>
+
+      <h3 class="text-left Bold marginT20">ID number:</h3>
+      <span class="infoText">{{idNumber}}</span>
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="text-left Bold marginT20">Personal Email:</h3>
+      <mat-form-field class="full-width" *ngIf="edit">
+        <input matInput [(ngModel)]="personalEmail" name="personalEmail">
+      </mat-form-field>
+
+      <span class="infoText" *ngIf="!edit">{{personalEmail}}</span>
+
+      <h3 class="text-left Bold marginT20">Date of Birth:</h3>
+      <span class="infoText">{{dateBirth}}</span>
+    </div>
+
+  </div>
+
+  <!-- Allergies -->
+  <div class="row">
+
+    <div class="col-md-12">
+      <h3 class="text-left titlePurple">Allergies information</h3>
+
+      <hr> <!-- Horizontal line -->
+
+      <span class="infoText">{{allergies}}</span>
+    </div>
+
+  </div>
+
+  <!-- Emergency contacts -->
+  <div class="row">
+
+    <div class="col-md-12" style="border-bottom: 0px; margin-bottom: 0px">
+      <button class="pull-right addButton" (click)="modalAddEmergencyContact()" *ngIf="edit">+</button>
+      <h3 class="text-left titlePurple">Emergency contacts</h3>
+
+
+      <hr style="border-bottom: 0px; margin-bottom: 0px"> <!-- Horizontal line -->
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceEC">
+
+          <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef> Contact Full Name </th>
+            <td mat-cell *matCellDef="let element">{{element.fullName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="relation">
+            <th mat-header-cell *matHeaderCellDef> RelationShip </th>
+            <td mat-cell *matCellDef="let element"> {{element.relation?.relation}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="contactNumber1">
+            <th mat-header-cell *matHeaderCellDef> Contact Number 1 </th>
+            <td mat-cell *matCellDef="let element"> {{element.contactNumber1}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="contactNumber2">
+            <th mat-header-cell *matHeaderCellDef> Contact Number 2 </th>
+            <td mat-cell *matCellDef="let element"> {{element.contactNumber2}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deleteButton">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <i class="fa fa-times-circle-o fa-2x" aria-hidden="true" (click)="deleteEmergentContact(element)"
+                *ngIf="edit" style="cursor: pointer; color:#8F8686;"></i>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsEC"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsEC;"></tr>
+        </table>
+
+        <!-- <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents -->
+  <div class="row">
+
+    <div class="col-md-12">
+      <button class="pull-right addButton" (click)="modalAddDocument()" *ngIf="edit">+</button>
+      <h3 class="text-left titlePurple">Documents</h3>
+
+      <hr style="border-bottom: 0px; margin-bottom: 0px"> <!-- Horizontal line -->
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceDocs">
+
+          <ng-container matColumnDef="documentType">
+            <th mat-header-cell *matHeaderCellDef> Document </th>
+            <td mat-cell *matCellDef="let element"> {{element.documentType?.documentType}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="uploadDate">
+            <th mat-header-cell *matHeaderCellDef> Upload date </th>
+            <td mat-cell *matCellDef="let element"> {{element.uploadDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="expirationDate">
+            <th mat-header-cell *matHeaderCellDef> Expiration date </th>
+            <td mat-cell *matCellDef="let element"> {{element.expirationDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="documentState">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element" [class]="element.documentState?.documentState">
+              {{element.documentState?.documentState}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deleteButton">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <i class="fa fa-times-circle-o fa-2x" aria-hidden="true" (click)="deleteDocument(element)" *ngIf="edit"
+                style="cursor: pointer; color:#8F8686;">
+              </i>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsDocs"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsDocs;"></tr>
+        </table>
+
+        <!-- <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Trainings -->
+  <div class="row">
+
+    <div class="col-md-12">
+      <h3 class="text-left titlePurple">My training</h3>
+
+      <hr style="border-bottom: 0px; margin-bottom: 0px"> <!-- Horizontal line -->
+    </div>
+
+    <div class="col-md-12">
+
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceTra">
+
+          <ng-container matColumnDef="course">
+            <th mat-header-cell *matHeaderCellDef> Course </th>
+            <td mat-cell *matCellDef="let element">{{element.course}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="porcentage">
+            <th mat-header-cell *matHeaderCellDef> Percentage </th>
+            <td mat-cell *matCellDef="let element"> {{element.porcentage}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsTra"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsTra;"></tr>
+        </table>
+
+        <!-- <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+
+      </div>
+    </div>
+  </div>
+
+</div>

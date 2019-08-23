@@ -1,0 +1,45 @@
+.large-box {
+  display: flex;
+  margin-top: 0;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 10px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.text-large {
+  font-size: large;
+  color: #720F6A;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #720F6A;
+  border-color: #720F6A;
+}
+
+.btn {
+  border-radius: 25px;
+  box-shadow: none;
+  border: 1px solid transparent;
+  padding: 6px 20px 6px 20px
+}
+
+/* active tab */
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color: red;
+  background-color: transparent;
+}
+
+/* ink bar */
+::ng-deep .mat-ink-bar {
+  background-color: var(--primary-color,#720F6A) !important;
+}
